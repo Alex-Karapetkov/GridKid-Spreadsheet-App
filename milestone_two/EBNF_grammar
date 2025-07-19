@@ -1,0 +1,39 @@
+equation        = expression
+expression      = logical_or
+logical_or      = logical_or LOG_OR logical_and
+                | logical_and
+logical_and     = logical_and LOG_AND relational
+                | relational
+relational      = relational EQUAL bitwise
+                | relational NOT_EQUAL bitwise
+                | relational LESS bitwise
+                | relational LESS_OR_EQUAL bitwise
+                | relational GREATER bitwise
+                | relational GREATER_OR_EQUAL bitwise
+                | bitwise
+bitwise         = bitwise BIT_OR shift
+                | btiwise BIT_AND shift
+                | bitwise BIT_XOR shift
+                | shift
+shift           = shift LEFT_SHIFT additive
+                | shift RIGHT_SHIFT additive
+                | additive
+additive        = additive ADD multiplicative
+                | additive SUBTRACT multiplicative
+                | multiplicative
+multiplicative  = multiplicative MULTIPLY exponent
+                | multiplicative DIVIDE exponent
+                | multiplicative MODULO exponent
+                | exponent
+exponent        = exponent POWER cast
+                | cast
+cast            = cast FLOAT_TO_INT not
+                | cast INT_TO_FLOAT not
+                | not
+not             = not BIT_NOT atom
+                | not LOG_NOT atom
+                | atom
+atom            = STRING_LITERAL
+                | BOOLEAN_LITERAL
+                | INT_LITERAL
+                | FLOAT_LITERAL
